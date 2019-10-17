@@ -12,4 +12,25 @@ public class Formapagamento
             return Id == (int)TipoFormaPagamento.Boleto;
         }
     }
+    public bool EhCartao
+    {
+        get
+        {
+            return Id == (int)TipoFormaPagamento.CartaoCredito;
+        }
+    }
+    public bool EhDeposito
+    {
+        get
+        {
+            return Id == (int)TipoFormaPagamento.Deposito;
+        }
+    }
+    public bool TipoPagNaoDefinido
+    {
+        get
+        {
+            return Id == (int)TipoFormaPagamento.NaoDefinido;
+        }
+    }
 }

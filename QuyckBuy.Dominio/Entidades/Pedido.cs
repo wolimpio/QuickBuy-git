@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class Pedido
+public class Pedido : Entidades
 {
     public int Id { get; set; }
     public DateTime DataPedido { get; set; }
@@ -13,7 +13,8 @@ public class Pedido
     public string EnderecoCompleto { get; set; }
     public string NumeroEndereço { get; set; }
 
-
+    public int FormaPagamentoId { get; set; }
+    public Formapagamento FormaPagamento { get; set; }
 
     public ICollection<ItemPedido> ItensPedido { get; set; }
 }

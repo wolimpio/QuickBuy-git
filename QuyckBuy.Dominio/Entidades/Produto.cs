@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-public class Produto
+public class Produto  : Entidades
 {
     public int Id { get; set; }
     public string Nome { get; set; }

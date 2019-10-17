@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class ItemPedido
+public class ItemPedido : Entidades
 {
     public int Id { get; set; }
     public int IdProduto { get; set; }
