@@ -5,4 +5,9 @@ public class ItemPedido : Entidades
     public int Id { get; set; }
     public int IdProduto { get; set; }
     public int Quantidade { get; set; }
+
+	public override void Validate()
+	{
+		throw new NotImplementedException();
+	}
 }

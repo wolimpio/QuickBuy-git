@@ -17,4 +17,9 @@ public class Pedido : Entidades
     public Formapagamento FormaPagamento { get; set; }
 
     public ICollection<ItemPedido> ItensPedido { get; set; }
+
+	public override void Validate()
+	{
+		throw new NotImplementedException();
+	}
 }

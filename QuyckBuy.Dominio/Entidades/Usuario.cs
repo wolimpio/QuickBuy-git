@@ -10,4 +10,9 @@ public class Usuario : Entidades
     public string Sobrenome { get; set; }
 
     public ICollection<Pedido> Pedidos { get; set; }
+
+	public override void Validate()
+	{
+		throw new System.NotImplementedException();
+	}
 }
