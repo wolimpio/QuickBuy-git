@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Pedido : Entidades
 {
@@ -20,6 +21,11 @@ public class Pedido : Entidades
 
 	public override void Validate()
 	{
-		throw new NotImplementedException();
+		LimparmensagemValidacao();
+		if (!ItensPedido.Any())
+			AdicionarCritica("É necessário adicionar item no pedido.");
+
+		if (string.IsNullOrEmpty(CEP))
+			AdicionarCritica("CEP não pode estar em branco.");
 	}
 }

@@ -8,6 +8,8 @@ public class ItemPedido : Entidades
 
 	public override void Validate()
 	{
-		throw new NotImplementedException();
+		LimparmensagemValidacao();
+		if (Quantidade <= 0)
+			AdicionarCritica("O produto deve ter quantidade maior que zero.");
 	}
 }

@@ -13,6 +13,8 @@ public class Usuario : Entidades
 
 	public override void Validate()
 	{
-		throw new System.NotImplementedException();
+		LimparmensagemValidacao();
+		if (string.IsNullOrEmpty(Email))
+			AdicionarCritica("O email do usuário deve estar preenchido.");
 	}
 }

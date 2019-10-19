@@ -1,19 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 public abstract class Entidades
 {
     public List<string> _mensagemValidacao { get; set; }     
-    public List<string> MensagemValidacao 
+    private List<string> MensagemValidacao 
     {         
         get 
         { 
             return _mensagemValidacao ?? (_mensagemValidacao = new List<string>()); 
         }    
     }
-    
-    public abstract void Validate();
+
+	public abstract void Validate();
+
+    protected void LimparmensagemValidacao()
+	{
+		MensagemValidacao.Clear();
+	}
+
+	protected void AdicionarCritica(string mensagem)
+	{
+		MensagemValidacao.Add(mensagem);
+	}    
 
     protected bool EhValidado 
     {

@@ -7,6 +7,8 @@
 
 	public override void Validate()
 	{
-		throw new System.NotImplementedException();
+		LimparmensagemValidacao();
+		if (Preco <= 0)
+			AdicionarCritica("O preço do produto deve ser mair que zero.");
 	}
 }
