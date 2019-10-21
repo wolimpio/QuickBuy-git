@@ -1,15 +1,16 @@
-﻿using System;
-
-public class ItemPedido : Entidades
+﻿namespace QuyckBuy.Dominio.Entidades
 {
-    public int Id { get; set; }
-    public int IdProduto { get; set; }
-    public int Quantidade { get; set; }
-
-	public override void Validate()
+	public class ItemPedido : Entidades
 	{
-		LimparmensagemValidacao();
-		if (Quantidade <= 0)
-			AdicionarCritica("O produto deve ter quantidade maior que zero.");
+		public int Id { get; set; }
+		public int IdProduto { get; set; }
+		public int Quantidade { get; set; }
+
+		public override void Validate()
+		{
+			LimparmensagemValidacao();
+			if (Quantidade <= 0)
+				AdicionarCritica("O produto deve ter quantidade maior que zero.");
+		}
 	}
 }
