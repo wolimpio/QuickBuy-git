@@ -1,4 +1,4 @@
-﻿namespace QuyckBuy.Dominio.Entidades
+﻿namespace QuyckBuy.Dominio.repositorio
 {
 	public class ItemPedido : Entidades
 	{

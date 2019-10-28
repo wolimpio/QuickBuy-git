@@ -1,5 +1,5 @@
 ﻿using QuyckBuy.Dominio.contrato;
-using QuyckBuy.Dominio.Entidades;
+using QuyckBuy.Dominio.repositorio;
 
 namespace QuickBuy.repositorio.Repositorios
 {

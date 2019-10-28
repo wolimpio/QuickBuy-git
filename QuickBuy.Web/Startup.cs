@@ -1,24 +1,37 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using QuickBuy.repositorio.Contexto;
 
 namespace QuickBuy.Web
 {
-    public class Startup
+	public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+		public IConfiguration Configuration { get; }
 
-        public IConfiguration Configuration { get; }
+		public Startup(IConfiguration configuration)
+        {
+			var build = new ConfigurationBuilder();
+
+			// arquivo criado para adicionar as informações de conexão do banco de dados.
+			build.AddJsonFile("config.json",optional: false, reloadOnChange:true);
+
+            Configuration = build.Build();
+
+        }        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+			var connectionString = Configuration.GetConnectionString("QuickBuyDb");
+			services.AddDbContext<QuickBuycontexto>(option =>
+														option.UseMySql(connectionString, 
+																			m => m.MigrationsAssembly("QuickBuy.repositorio")));
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

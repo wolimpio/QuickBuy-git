@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace QuyckBuy.Dominio.Entidades
+namespace QuyckBuy.Dominio.repositorio
 {
 	public class Usuario : Entidades
 	{
