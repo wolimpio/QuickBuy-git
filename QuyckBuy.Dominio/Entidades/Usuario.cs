@@ -9,8 +9,8 @@ namespace QuyckBuy.Dominio.repositorio
 		public string Senha { get; set; }
 		public string Nome { get; set; }
 		public string Sobrenome { get; set; }
-
-		public ICollection<Pedido> Pedidos { get; set; }
+		// é necessário o virtual para o EF core entender que é n/n e fazer o mapeamento da maneira correta.
+		public virtual ICollection<Pedido> Pedidos { get; set; }
 
 		public override void Validate()
 		{
