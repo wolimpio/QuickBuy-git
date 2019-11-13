@@ -5,7 +5,7 @@ namespace QuyckBuy.Dominio.repositorio
 {
 	public abstract class Entidades
 	{
-		public List<string> _mensagemValidacao { get; set; }
+		private List<string> _mensagemValidacao { get; set; }
 		private List<string> MensagemValidacao
 		{
 			get

@@ -10,6 +10,9 @@ namespace QuickBuy.repositorio.Config
 		{
 			builder.HasKey(item => item.Id);
 			builder
+				.Property(item => item.IdProduto)
+				.IsRequired();
+			builder
 				.Property(item => item.Quantidade)
 				.IsRequired();
 		}

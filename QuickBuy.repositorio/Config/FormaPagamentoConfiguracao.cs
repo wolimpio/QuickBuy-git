@@ -7,7 +7,15 @@ namespace QuickBuy.repositorio.Config
 	{
 		public void Configure(EntityTypeBuilder<Formapagamento> builder)
 		{
-			throw new System.NotImplementedException();
+			builder.HasKey(formaP => formaP.Id);
+			builder
+				.Property(formaP => formaP.Nome)
+				.IsRequired()
+				.HasMaxLength(50);
+			builder
+				.Property(formaP => formaP.Descricao)
+				.IsRequired()
+				.HasMaxLength(100);
 		}
 	}
 }
