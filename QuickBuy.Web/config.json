@@ -1,3 +1,4 @@
+/*Clicar com o botão direito sobre o arquivo config.jason, selecionar propriedades e marcar copiar para diretório como "sempre"*/
 {
   "ConnectionStrings": {
     "SqlServerConnection": "",

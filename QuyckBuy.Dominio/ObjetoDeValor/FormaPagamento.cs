@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 public class Formapagamento
 {
@@ -33,4 +34,11 @@ public class Formapagamento
             return Id == (int)TipoFormaPagamento.NaoDefinido;
         }
     }
+
+	public Formapagamento(int id, string nome, string descricao)
+	{
+		this.Id = id;
+		this.Nome = nome;
+		this.Descricao = descricao;				
+	}
 }

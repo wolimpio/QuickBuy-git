@@ -14,6 +14,8 @@ namespace QuickBuy.repositorio.Config
 				.Property(pedido => pedido.DataPedido)
 				.IsRequired();
 			builder
+				.Property(pedido => pedido.UsuarioId);
+			builder
 				.Property(pedido => pedido.DataPrevisaoEntrega)
 				.IsRequired();
 			builder
@@ -36,6 +38,10 @@ namespace QuickBuy.repositorio.Config
 				.Property(pedido => pedido.NumeroEndereço)
 				.IsRequired()
 				.HasMaxLength(5);
+			builder
+				.HasMany(pedido => pedido.ItensPedido)
+				.WithOne(itempedido => itempedido.Pedido);
+
 		}
 	}
 }
