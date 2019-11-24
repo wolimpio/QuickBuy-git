@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using QuickBuy.repositorio.Contexto;
+using QuickBuy.repositorio.Repositorios;
+using QuyckBuy.Dominio.contrato;
 
 namespace QuickBuy.Web
 {
@@ -33,6 +35,9 @@ namespace QuickBuy.Web
 														option.UseLazyLoadingProxies()
 														.UseMySql(connectionString, 
 																			m => m.MigrationsAssembly("QuickBuy.repositorio")));
+
+			// fazer esse mapeamento para todas as classes que possuem interface com sua classe própria.
+			services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

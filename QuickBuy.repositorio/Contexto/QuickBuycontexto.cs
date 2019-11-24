@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QuickBuy.repositorio.Config;
-using QuyckBuy.Dominio.repositorio;
+using QuyckBuy.Dominio.Entidades;
 
 namespace QuickBuy.repositorio.Contexto
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace QuyckBuy.Dominio.repositorio
+namespace QuyckBuy.Dominio.Entidades
 {
 	public abstract class Entidades
 	{

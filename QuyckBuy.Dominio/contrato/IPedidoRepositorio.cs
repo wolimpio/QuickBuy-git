@@ -1,4 +1,4 @@
-﻿using QuyckBuy.Dominio.repositorio;
+﻿using QuyckBuy.Dominio.Entidades;
 
 namespace QuyckBuy.Dominio.contrato
 {
