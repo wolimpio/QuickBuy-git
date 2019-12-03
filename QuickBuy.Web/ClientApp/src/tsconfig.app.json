@@ -1,9 +1,11 @@
 {
   "extends": "../tsconfig.json",
+  "compileOnSave": true,
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "es2015",
-    "types": []
+    "types": [],
+    "charset": "utf8"
   },
   "exclude": [
     "src/test.ts",
