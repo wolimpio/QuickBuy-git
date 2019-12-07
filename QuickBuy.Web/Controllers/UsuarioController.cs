@@ -2,9 +2,6 @@
 using QuyckBuy.Dominio.contrato;
 using QuyckBuy.Dominio.Entidades;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace QuickBuy.Web.Controllers
 {
@@ -19,11 +16,11 @@ namespace QuickBuy.Web.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Post([FromBody] Usuario usuario)
+		public IActionResult Post([FromBody]Usuario usuario)
 		{
 			try
 			{
-				_usuarioRepositorio.Adicionar(usuario);
+				//_usuarioRepositorio.Adicionar(usuario);
 				return Ok();
 			}
 			catch (Exception ex)
@@ -33,14 +30,15 @@ namespace QuickBuy.Web.Controllers
 		}
 
 		[HttpPost("VerificarUsuario")]
-		public ActionResult VerificarUsuario([FromBody] Usuario usuario)
+		public IActionResult VerificarUsuario([FromBody] Usuario usuario)
 		{
 			try
 			{
-				if (usuario.Email == "wellington.olimpios@gmail.com" && usuario.Senha == "123")
+				var usuarioRetorno = _usuarioRepositorio.Obter(usuario.Email, usuario.Senha);
+
+				if (usuarioRetorno != null)
 				{
-					//_usuarioRepositorio.Adicionar(usuario);
-					return Ok(usuario);
+					return Ok(usuarioRetorno);
 				}
 				return BadRequest("usuário ou senha inválidos");
 			}

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,9 +39,10 @@ namespace QuickBuy.Web
 
 			// fazer esse mapeamento para todas as classes que possuem interface com sua classe própria.
 			services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+			services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
-            // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
+			// In production, the Angular files will be served from this directory
+			services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
