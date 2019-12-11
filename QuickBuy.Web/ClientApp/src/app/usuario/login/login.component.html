@@ -22,6 +22,9 @@
                 *ngIf="ativar_spinner"></span>
             Entrar
         </button>
+        <div>
+            Novo por aqui? <a [routerLink]="['/novo-usuario']" routerLinkActive="router-link-active">Cadastre-se</a>
+        </div>
 
         <div class="alert alert-danger" *ngIf="mensagem">
             {{ mensagem }}

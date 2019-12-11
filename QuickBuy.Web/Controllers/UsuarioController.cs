@@ -20,7 +20,7 @@ namespace QuickBuy.Web.Controllers
 		{
 			try
 			{
-				//_usuarioRepositorio.Adicionar(usuario);
+				_usuarioRepositorio.Adicionar(usuario);
 				return Ok();
 			}
 			catch (Exception ex)
