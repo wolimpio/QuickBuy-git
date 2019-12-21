@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,8 @@ namespace QuickBuy.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+			// Utilizado para pegar o contexto da requisição
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 			var connectionString = Configuration.GetConnectionString("QuickBuyDb");
 			services.AddDbContext<QuickBuycontexto>(option =>

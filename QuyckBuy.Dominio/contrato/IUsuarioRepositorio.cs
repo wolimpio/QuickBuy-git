@@ -5,5 +5,6 @@ namespace QuyckBuy.Dominio.contrato
 	public interface IUsuarioRepositorio : IBaserepositorio<Usuario>
 	{
 		Usuario Obter(string email, string senha);
+		Usuario Obter(string email);
 	}
 }

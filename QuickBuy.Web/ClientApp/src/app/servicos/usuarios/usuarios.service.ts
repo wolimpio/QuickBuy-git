@@ -14,6 +14,8 @@ export class UsuariosService {
   set usuario(usuario: Usuario) {
     sessionStorage.setItem("usuario-autenticado", JSON.stringify(usuario));
     this._usuario = usuario;
+
+    console.log(this.usuario);
   }
 
   get usuario(): Usuario {
@@ -21,6 +23,10 @@ export class UsuariosService {
     this._usuario = JSON.parse(usuario_json);
 
     return this._usuario;
+  }
+
+  get headers(): HttpHeaders {
+    return new HttpHeaders().set('content-type', 'application/json');
   }
 
   public usuario_autenticado(): boolean {
@@ -48,14 +54,6 @@ export class UsuariosService {
   }
 
   public cadastrarUsuario(usuario: Usuario): Observable<Usuario> {
-    const headers = new HttpHeaders().set('content-type', 'application/json');
-    var body = {
-      email: usuario.email,
-      senha: usuario.senha,
-      nome: usuario.nome,
-      sobrenome: usuario.sobrenome
-    }
-
-    return this.http.post<Usuario>(this.urlbase + 'api/usuario/', body, { headers });
+    return this.http.post<Usuario>(this.urlbase + 'api/usuario/', JSON.stringify(usuario), { headers: this.headers });
   }
 }

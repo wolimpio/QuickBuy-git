@@ -13,6 +13,7 @@ import { GuardaRotasGuard } from './Autorizacao/guarda-rotas.guard';
 import { UsuariosService } from './servicos/usuarios/usuarios.service';
 import { CadastroUsuarioComponent } from './usuario/cadastro.usuario/cadastro.usuario.component';
 import { ProdutosService } from './servicos/produtos/produtos.service';
+import { ProdutoPesquisaComponent } from './produto-pesquisa/produto-pesquisa.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProdutosService } from './servicos/produtos/produtos.service';
     HomeComponent,
     ProdutoComponent,
     LoginComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    ProdutoPesquisaComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,7 +31,8 @@ import { ProdutosService } from './servicos/produtos/produtos.service';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'produto', component: ProdutoComponent/*, canActivate: [GuardaRotasGuard]*/ },
+      { path: 'novo-produto', component: ProdutoComponent/*, canActivate: [GuardaRotasGuard]*/ },
+      { path: 'produto', component: ProdutoPesquisaComponent /*, canActivate: [GuardaRotasGuard]*/ },
       { path: 'entrar', component: LoginComponent },
       { path: 'novo-usuario', component: CadastroUsuarioComponent }
     ])

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuickBuy.repositorio.Contexto;
 
 namespace QuickBuy.repositorio.Migrations
 {
     [DbContext(typeof(QuickBuycontexto))]
-    partial class QuickBuycontextoModelSnapshot : ModelSnapshot
+    [Migration("20191212140356_ProdutoAddNomeArquivo")]
+    partial class ProdutoAddNomeArquivo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,8 +141,7 @@ namespace QuickBuy.repositorio.Migrations
                     b.Property<string>("NomeArquivo")
                         .HasMaxLength(255);
 
-                    b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(19,4)");
+                    b.Property<decimal>("Preco");
 
                     b.HasKey("Id");
 

@@ -11,13 +11,22 @@
                         <a class="nav-link text-dark" [routerLink]='["/"]'>Home</a>
                     </li>
                     <li class="nav-item" [routerLinkActive]='["link-active"]'>
-                        <a class="nav-link text-dark" [routerLink]='["/produto"]'>Produto</a>
+                        <a class="nav-link text-dark" [routerLink]='["/novo-produto"]'>Produto</a>
                     </li>
                     <li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="!usuarioLogado()">
                         <a class="nav-link text-dark" [routerLink]='["/entrar"]'>Entrar</a>
                     </li>
-                    <li class="nav-item" [routerLinkActive]='["link-active"]' *ngIf="usuarioLogado()">
-                        <a class="nav-item nav-link text-dark" [routerLink]='["/"]' (click)="sair()">Sair</a>
+
+
+                    <li class="nav-item text-dark dropdown" [routerLinkActive]='["link-active"]' *ngIf="usuarioLogado()">
+
+                        <a href="#" class="nav-link dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="true" id="linkMenu" data-toggle="dropdown">{{ usuariosService.usuario.nome | titlecase }}</a>
+                        <ul class="dropdown-menu" aria-label="linkMenu">
+                            <li class="dropdown-item" [routerLink]='["/"]' (click)="sair()">
+                                sair
+                            </li>
+                        </ul>
+
                     </li>
                 </ul>
             </div>

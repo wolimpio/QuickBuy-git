@@ -29,9 +29,16 @@
 
 <div class="input-group col-md-4">
     <div class="custom-file mb-2">
-        <input type="file" class="custom-file-input" id="inputFile" aria-describedby="inputGroupFileAddon04">
-        <label class="custom-file-label" for="inputFile">Escolha uma foto</label>
+        <input type="file" class="custom-file-input" id="inputFile" aria-describedby="inputGroupFileAddon04" (change)="inputChange($event.target.files)">
+        <label class="custom-file-label" for="inputFile">
+            Escolha uma foto </label>
     </div>
 </div>
 
-<button class="btn btn-primary col-md-2" (click)="cadastrar()">Cadastrar</button>
+<button class="btn btn-primary col-md-2 mb-2" (click)="cadastrar()" [disabled]="ativar_spinner">
+    <span class="spinner-border spinner-border-sm" *ngIf="ativar_spinner"></span> Cadastrar
+</button>
+
+<div class="alert alert-danger col-md-4" *ngIf="mensagem">
+    {{ mensagem }}
+</div>

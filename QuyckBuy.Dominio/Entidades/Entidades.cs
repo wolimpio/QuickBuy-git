@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace QuyckBuy.Dominio.Entidades
@@ -26,7 +27,12 @@ namespace QuyckBuy.Dominio.Entidades
 			MensagemValidacao.Add(mensagem);
 		}
 
-		protected bool EhValidado
+		public string ObterMensagemValidacao()
+		{
+			return string.Join(". ", MensagemValidacao);
+		}
+
+		public bool EhValidado
 		{
 			get { return !MensagemValidacao.Any(); }
 		}

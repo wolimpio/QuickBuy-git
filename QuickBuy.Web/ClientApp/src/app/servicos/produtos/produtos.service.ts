@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProdutosService implements OnInit {
-
   private _baseUrl: string;
   public _produtos: Produto[];
   get headers(): HttpHeaders {
@@ -20,6 +19,13 @@ export class ProdutosService implements OnInit {
 
   ngOnInit(): void {
     this._produtos = [];
+  }
+
+  public enviarArquivo(arquivoSelecionado: File): Observable<string> {
+    const formData: FormData = new FormData();
+    formData.append("arquivoEnviado", arquivoSelecionado, arquivoSelecionado.name);
+
+    return this.http.post<string>(this._baseUrl + 'api/produto/EnviarArquivo', formData);
   }
 
   public cadastrar(produto: Produto): Observable<Produto> {

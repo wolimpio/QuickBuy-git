@@ -32,9 +32,10 @@
         </div>
 
         <button class="btn btn-primary btn-block mb-2" type="submit" (click)="cadastrar()" [disabled]="ativar_spinner">
-      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativar_spinner"></span>
-      Cadastrar
-    </button>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                *ngIf="ativar_spinner"></span>
+            Cadastrar
+        </button>
 
         <div>
             Já sou cadastrado. <a [routerLink]="['/entrar']" routerLinkActive="router-link-active">Login</a>
@@ -42,6 +43,10 @@
 
         <div class="alert alert-danger" *ngIf="mensagem">
             {{ mensagem }}
+        </div>
+
+        <div class="alert alert-success" *ngIf="usuario_cadastrado">
+            Usuário cadastrado com sucesso.<a class="alert-link" [routerLink]="['/entrar']" routerLinkActive="router-link-active">clique aqui para entrar</a>
         </div>
     </form>
 </div>
