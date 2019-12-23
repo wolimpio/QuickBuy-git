@@ -1,5 +1,0 @@
-.:: LIVROS ::.
-
-* Métricas Ágeis - Raphael Donaire Albino (lendo)
-* Gerenciamento ágil de projetos - Vitor Massari (lendo)
-

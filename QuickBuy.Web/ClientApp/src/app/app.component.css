@@ -14,10 +14,6 @@ body {
     min-height: 100vh;
 }
 
-th {
-    background-color: white;
-}
-
-td {
-    color: white;
+.titulo {
+    color: #666;
 }
