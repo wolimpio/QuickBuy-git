@@ -1,0 +1,35 @@
+<div *ngIf="!produtos">
+    Carregando Produtos...
+</div>
+
+<div class="row">
+    <div class="col-md-3 mb-2" *ngFor="let prod of produtos">
+        <a (click)="abrirProduto(prod)" style="cursor: pointer;">
+            <div class="card">
+                <img src="../../../../arquivos/{{prod.nomeArquivo}}" class="card-img-top img-card">
+                <div class="card-body">
+                    <!--h5 class="card-title"> {{prod.nome}} </!--h5-->
+                    <!-- pipe tuncate disponível após a instalação do pacote ng2 truncate-->
+                    <p class="card-text"> {{prod.descricao | truncate: 50}} </p>
+                    <h5 class="h5"> {{prod.preco | currency:'BRL'}} </h5>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-pergunta">
+    Launch demo modal
+</button>
+
+<app-modal-pergunta>
+    <div class="modal-pergunta-titulo">Título de Teste - através do content</div>
+    <div class="modal-pergunta-corpo">Teste corpo do modal pergunta</div>
+</app-modal-pergunta>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-processamento">
+    Tela de carregamento
+</button>
+
+<app-modal-processando></app-modal-processando>

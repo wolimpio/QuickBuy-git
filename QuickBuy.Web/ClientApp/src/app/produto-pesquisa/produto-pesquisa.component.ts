@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Produto } from '../modelo/produto';
 import { ProdutosService } from '../servicos/produtos/produtos.service';
 import { Router } from '@angular/router';
+import { ModalPerguntaService } from '../servicos/Componentes/modal-pergunta.service';
 
 @Component({
   selector: 'app-produto-pesquisa',
@@ -11,8 +12,11 @@ import { Router } from '@angular/router';
 export class ProdutoPesquisaComponent implements OnInit {
 
   public produtos: Produto[];
+  private nomeProdutoSelecionado: string;
 
-  constructor(private produtoServico: ProdutosService, private router: Router) {
+  constructor(private produtoServico: ProdutosService,
+    private modalPerguntaServico: ModalPerguntaService,
+    private router: Router) {
     this.produtoServico.obterTodos().subscribe(
       produtos => {
         this.produtos = produtos;
@@ -39,6 +43,25 @@ export class ProdutoPesquisaComponent implements OnInit {
         }
       );
     }
+
+    // this.nomeProdutoSelecionado = produto.nome;
+    // // tslint:disable-next-line: prefer-const
+    // this.modalPerguntaServico.getResposta().subscribe(
+    //   retorno => {
+    //     if (retorno) {
+    //       console.log('chamou o deletar');
+    //       // this.produtoServico.deletar(produto).subscribe(
+    //       //   produtos => {
+    //       //     this.produtos = produtos;
+    //       //   },
+    //       //   erro => {
+    //       //     console.log(erro.error);
+    //       //   }
+    //       // );
+    //     }
+    //   }
+    // );
+
   }
 
   public editarProduto(produto: Produto) {

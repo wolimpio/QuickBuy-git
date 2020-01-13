@@ -12,9 +12,10 @@
 <div class="col-md-4">
     <label for="inputDescricao" class="sr-only">Descrição</label>
     <input type="text" id="inputDescricao" name="descricaoProduto" placeholder="Digite a descrição do produto" class="form-control mb-2" [ngClass]="{'is-invalid': descricao.invalid && (descricao.dirty || descricao.touched), 
-                    'is-valid': descricao.valid && (descricao.dirty || descricao.touched)}" [(ngModel)]="produto.descricao" #descricao="ngModel" required>
+                    'is-valid': descricao.valid && (descricao.dirty || descricao.touched)}" [(ngModel)]="produto.descricao" #descricao="ngModel" required maxlength="100" minlength="30">
     <div class="invalid-feedback mb-2" *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)">
         <div *ngIf="descricao.errors.required">Descrição é de preenchimento obrigatório</div>
+        <div *ngIf="descricao.errors.minlength">O campo deve ter no mínimo 30 caracteres</div>
     </div>
 </div>
 
@@ -35,9 +36,15 @@
     </div>
 </div>
 
-<button class="btn btn-primary col-md-2 mb-2" (click)="cadastrar()" [disabled]="ativar_spinner">
-    <span class="spinner-border spinner-border-sm" *ngIf="ativar_spinner"></span> Cadastrar
-</button>
+<div class="form-inline">
+    <button class="btn btn-primary col-md-2 mb-2" style="margin-right: 4px;" (click)="cadastrar()" [disabled]="ativar_spinner || descricao.errors || nome.errors || preco.errors">
+        <span class="spinner-border spinner-border-sm" *ngIf="ativar_spinner"></span> Cadastrar
+    </button>
+
+    <button class="btn btn-secondary col-md-2 mb-2" [routerLink]="['/produto']" routerLinkActive="router-link-active">
+        Cancelar
+    </button>
+</div>
 
 <div class="alert alert-danger col-md-4" *ngIf="mensagem">
     {{ mensagem }}

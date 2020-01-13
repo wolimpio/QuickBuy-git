@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-9">
+        <table class="table table-hover">
+            <caption>Produtos do carrinho</caption>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let prod of produtos">
+                    <td> <img src="../../../../arquivos/{{prod.nomeArquivo}}" class="img-tabela"> </td>
+                    <td>{{prod.descricao|truncate:50}}</td>
+                    <td>
+                        <input type="number" class="form-control" value="1" (change)="atualizarPreco(prod, $event.target.value)" [(ngModel)]="prod.quantidade" placeholder="1">
+                    </td>
+                    <td>{{prod.preco| currency:'BRL'}}</td>
+                    <td><button class=" btn btn-secondary btn-sm " (click)="remover(prod)">Remover</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-3">
+        <div class="row ">
+            <div class="card ">
+                <div class="card-header ">Resumo</div>
+                <div class="card-body row ">
+                    <div class="col-md-6 "><strong>Total:</strong></div>
+                    <div class="col-md-6 text-right mb-4 "><strong>R$ {{total | number: '1.0-2'}}</strong></div>
+                    <button class="btn btn-danger btn-block ">Efetivar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

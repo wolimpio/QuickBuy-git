@@ -5,7 +5,6 @@
 </div>
 
 <div *ngIf="produtos">
-
     <button class="btn btn-primary mb-2 float-right" [routerLink]="['/novo-produto']" routerLinkActive="router-link-active">Novo Produto</button>
 
     <div class="table-responsive">
@@ -23,14 +22,20 @@
             <tbody>
                 <tr *ngFor="let prod of produtos">
                     <th scope="row"> {{prod.nome}} </th>
-                    <td> {{prod.descricao}} </td>
+                    <td> {{prod.descricao | truncate: 80}} </td>
                     <td> {{prod.preco | currency:'BRL'}} </td>
                     <td> <img src="../../../../arquivos/{{prod.nomeArquivo}}" alt="" class="img-tabela"> </td>
                     <td><button class="btn btn-success btn-sm" (click)="editarProduto(prod)">Editar</button></td>
-                    <td><button class="btn btn-danger btn-sm" (click)="deletarProduto(prod)">Deletar</button></td>
+                    <td><button class="btn btn-danger btn-sm" data-toggle="modal" (click)="deletarProduto(prod)">Deletar</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
-
 </div>
+
+<app-modal-pergunta>
+    <div class="modal-pergunta-titulo">Confirmação de Exclusão</div>
+    <div class="modal-pergunta-corpo">
+        Você deseja realmente confirmar a exclusão do produto <b>{{nomeProdutoSelecionado}}</b>?
+    </div>
+</app-modal-pergunta>
