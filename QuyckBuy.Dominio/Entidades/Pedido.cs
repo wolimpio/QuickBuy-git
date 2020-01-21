@@ -20,8 +20,8 @@ namespace QuyckBuy.Dominio.Entidades
 
 		/*para fazer a configuração de n/n é necessário ter a propriedade do id da classe pai e outra propriedade com o objeto da classe pai,
 		 ambas as propriedades devem começar com o nome da classe (nesse caso iniciam com Usuario) e a propriedade do objeto deve ser declarada 
-		 com virtual.
-		*/
+		 com virtual.*/
+		
 		public int UsuarioId { get; set; }
 		public virtual Usuario Usuario { get; set; }
 

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CarrinhoCompras } from '../carrinho-compras/loja-carrinho-compras';
 import { Produto } from 'src/app/modelo/produto';
+import { Pedido } from 'src/app/modelo/pedido';
+import { UsuariosService } from 'src/app/servicos/usuarios/usuarios.service';
+import { ItemPedido } from 'src/app/modelo/itemPedido';
 
 @Component({
   selector: 'app-loja-efetivar',
@@ -12,7 +15,7 @@ export class LojaEfetivarComponent implements OnInit {
   public produtos: Produto[] = [];
   public total: number;
 
-  constructor() { }
+  constructor(private usuarioServico: UsuariosService) { }
 
   ngOnInit() {
     this.carrinhoCompras = new CarrinhoCompras();
@@ -51,4 +54,33 @@ export class LojaEfetivarComponent implements OnInit {
     this.total = this.produtos.reduce((acumulador, produto) => acumulador + produto.preco, 0);
   }
 
+  efetivarCompra() {
+    let pedido = this.criarPedido();
+  }
+
+  criarPedido(): Pedido {
+    let pedido = new Pedido();
+
+    pedido.usuarioId = this.usuarioServico.usuario.id;
+    pedido.cep = '50870-470';
+    pedido.cidade = 'Recife';
+    pedido.estado = 'PE';
+    pedido.numeroEndereco = '108';
+    pedido.enderecoCompleto = 'Rua São Barnabé, Areias';
+    pedido.dataPrevisaoEntrega = new Date();
+    pedido.formaPagamentoId = 1;
+
+    this.produtos = this.carrinhoCompras.obterProdutos();
+    // tslint:disable-next-line: prefer-const
+    for (let produtoSelecionado of this.produtos) {
+      // tslint:disable-next-line: prefer-const
+      let itemPedido = new ItemPedido();
+      itemPedido.produtoId = produtoSelecionado.id;
+      itemPedido.quantidade = produtoSelecionado.quantidade ? produtoSelecionado.quantidade : 1;
+
+      pedido.itemPedido.push(itemPedido);
+    }
+
+    return pedido;
+  }
 }

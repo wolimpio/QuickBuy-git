@@ -44,4 +44,10 @@ export class CarrinhoCompras {
     public atualizar(produtos: Produto[]) {
         localStorage.setItem("produtoLocalstorage", JSON.stringify(produtos));
     }
+
+    public carrinhoVazio(): boolean {
+        var itens = this.obterProdutos();
+
+        return (itens.length === 0);
+    }
 }

@@ -33,6 +33,10 @@ export class UsuariosService {
     return this._usuario != null && this._usuario.email != null && this._usuario.senha != null;
   }
 
+  public usuario_admin(): boolean {
+    return this.usuario_autenticado() && this._usuario.admin;
+  }
+
   public limpar_sessao() {
     sessionStorage.setItem("usuario-autenticado", "");
     this._usuario = null;
