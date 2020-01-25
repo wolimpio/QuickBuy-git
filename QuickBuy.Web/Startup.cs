@@ -30,7 +30,11 @@ namespace QuickBuy.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+			// A linha AddJsonOptions serve para evitar referencia circular, evitando que dê erro de má formação de JSON ao retornar o JSON da API.
+			services.AddMvc()
+				.SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+				.AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
 			// Utilizado para pegar o contexto da requisição
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -43,6 +47,7 @@ namespace QuickBuy.Web
 			// fazer esse mapeamento para todas as classes que possuem interface com sua classe própria.
 			services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
 			services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+			services.AddScoped<IPedidoRepositorio, PedidoRepositorio>();
 
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>

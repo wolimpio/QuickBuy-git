@@ -1,6 +1,7 @@
 import { Produto } from "src/app/modelo/produto";
 
 export class CarrinhoCompras {
+
     public _produtos: Produto[] = [];
 
     constructor() {
@@ -49,5 +50,9 @@ export class CarrinhoCompras {
         var itens = this.obterProdutos();
 
         return (itens.length === 0);
+    }
+
+    public limparcarrinho() {
+        localStorage.setItem("produtoLocalstorage", "");
     }
 }

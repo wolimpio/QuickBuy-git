@@ -35,7 +35,7 @@ namespace QuickBuy.repositorio.Config
 				.IsRequired()
 				.HasMaxLength(200);
 			builder
-				.Property(pedido => pedido.NumeroEndereço)
+				.Property(pedido => pedido.NumeroEndereco)
 				.IsRequired()
 				.HasMaxLength(5);
 			builder

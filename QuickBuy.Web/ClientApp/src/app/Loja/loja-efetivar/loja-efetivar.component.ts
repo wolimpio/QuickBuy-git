@@ -4,6 +4,8 @@ import { Produto } from 'src/app/modelo/produto';
 import { Pedido } from 'src/app/modelo/pedido';
 import { UsuariosService } from 'src/app/servicos/usuarios/usuarios.service';
 import { ItemPedido } from 'src/app/modelo/itemPedido';
+import { PedidoService } from 'src/app/servicos/pedido/pedido.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loja-efetivar',
@@ -15,7 +17,9 @@ export class LojaEfetivarComponent implements OnInit {
   public produtos: Produto[] = [];
   public total: number;
 
-  constructor(private usuarioServico: UsuariosService) { }
+  constructor(private usuarioServico: UsuariosService,
+    private pedidoServico: PedidoService,
+    private router: Router) { }
 
   ngOnInit() {
     this.carrinhoCompras = new CarrinhoCompras();
@@ -26,7 +30,7 @@ export class LojaEfetivarComponent implements OnInit {
   }
 
   public atualizarPreco(produto: Produto, qtd: number) {
-    var quantidade: number = qtd;
+    let quantidade: number = qtd;
 
     if (qtd <= 0) {
       quantidade = 1;
@@ -55,10 +59,27 @@ export class LojaEfetivarComponent implements OnInit {
   }
 
   efetivarCompra() {
+    // tslint:disable-next-line: prefer-const
     let pedido = this.criarPedido();
+    this.pedidoServico.efetivarCompra(pedido).subscribe(
+      pedidoId => {
+        // salvando o número do pedido
+        sessionStorage.setItem("PedidoId", pedidoId.toString());
+
+        // Limpando produtos da lista
+        this.produtos = [];
+        this.carrinhoCompras.limparcarrinho();
+
+        this.router.navigate(["/compra-sucesso"]);
+      },
+      erro => {
+        console.log(erro.error());
+      }
+    );
   }
 
   criarPedido(): Pedido {
+    // tslint:disable-next-line: prefer-const
     let pedido = new Pedido();
 
     pedido.usuarioId = this.usuarioServico.usuario.id;
@@ -72,13 +93,17 @@ export class LojaEfetivarComponent implements OnInit {
 
     this.produtos = this.carrinhoCompras.obterProdutos();
     // tslint:disable-next-line: prefer-const
-    for (let produtoSelecionado of this.produtos) {
+    for (let i = 0; i < this.produtos.length; i++) {
       // tslint:disable-next-line: prefer-const
       let itemPedido = new ItemPedido();
-      itemPedido.produtoId = produtoSelecionado.id;
-      itemPedido.quantidade = produtoSelecionado.quantidade ? produtoSelecionado.quantidade : 1;
+      itemPedido.produtoId = this.produtos[i].id;
 
-      pedido.itemPedido.push(itemPedido);
+      if (!this.produtos[i].quantidade) {
+        this.produtos[i].quantidade = 1;
+      }
+      itemPedido.quantidade = this.produtos[i].quantidade;
+
+      pedido.itensPedido.push(itemPedido);
     }
 
     return pedido;

@@ -35,6 +35,8 @@ export class LoginComponent implements OnInit {
     this.usuariosService.verificarUsuario(this.usuario).subscribe(
       usuario_json => {
         // sessionStorage.setItem("usuario-autenticado", "1");
+        console.log("Usuario Json:");
+        console.log(usuario_json);
         this.usuariosService.usuario = usuario_json;
 
         this.router.navigate([this.retornoUrl]);

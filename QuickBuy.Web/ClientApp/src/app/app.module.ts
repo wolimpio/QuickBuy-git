@@ -21,6 +21,8 @@ import { ModalProcessandoComponent } from './modal-processando/modal-processando
 import { ModalPerguntaService } from './servicos/Componentes/modal-pergunta.service';
 import { LojaProdutoComponent } from './Loja/loja-produto/loja-produto.component';
 import { LojaEfetivarComponent } from './Loja/loja-efetivar/loja-efetivar.component';
+import { PedidoService } from './servicos/pedido/pedido.service';
+import { CompraSucessoComponent } from './loja/compra-sucesso/compra-sucesso.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { LojaEfetivarComponent } from './Loja/loja-efetivar/loja-efetivar.compon
     ModalPerguntaComponent,
     ModalProcessandoComponent,
     LojaProdutoComponent,
-    LojaEfetivarComponent
+    LojaEfetivarComponent,
+    CompraSucessoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -49,11 +52,17 @@ import { LojaEfetivarComponent } from './Loja/loja-efetivar/loja-efetivar.compon
       { path: 'entrar', component: LoginComponent },
       { path: 'loja-produto', component: LojaProdutoComponent },
       { path: 'loja-efetivar', component: LojaEfetivarComponent, canActivate: [GuardaRotasGuard] },
+      { path: 'compra-sucesso', component: CompraSucessoComponent },
       { path: 'novo-usuario', component: CadastroUsuarioComponent }
     ],
       { useHash: true })
   ],
-  providers: [UsuariosService, ProdutosService, ModalPerguntaService],
+  providers: [
+    UsuariosService,
+    ProdutosService,
+    ModalPerguntaService,
+    PedidoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

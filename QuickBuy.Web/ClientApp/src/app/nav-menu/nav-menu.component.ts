@@ -14,11 +14,11 @@ export class NavMenuComponent implements OnInit {
   public carrinhoCompra: CarrinhoCompras;
 
   constructor(private router: Router, private usuariosService: UsuariosService) {
-    this.carrinhoCompra = new CarrinhoCompras();
+
   }
 
   ngOnInit(): void {
-    throw new Error("Method not implemented.");
+    this.carrinhoCompra = new CarrinhoCompras();
   }
 
   collapse() {

@@ -1,0 +1,5 @@
+<div class="text-center" *ngIf="pedidoId">
+    <p class="h4">Compra realizada com sucesso!</p>
+    <p class="h3">Anote o número do pedido</p>
+    <p class="h2">Pedido: <strong style="color: red;">#{{("00000"+pedidoId).slice(-5)}}</strong></p>
+</div>

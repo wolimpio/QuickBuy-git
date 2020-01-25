@@ -12,10 +12,10 @@ export class Pedido {
     public formaPagamentoId: number;
     public usuarioId: number;
 
-    public itemPedido: ItemPedido[];
+    public itensPedido: ItemPedido[];
 
     constructor() {
         this.dataPedido = new Date();
-        this.itemPedido = [];
+        this.itensPedido = [];
     }
 }
